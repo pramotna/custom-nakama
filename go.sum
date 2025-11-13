@@ -110,6 +110,8 @@ github.com/heroiclabs/nakama-common v1.43.0 h1:E01WvhxdNP8hip4O98fy375hoeHLUR9py
 github.com/heroiclabs/nakama-common v1.43.0/go.mod h1:E4yiMQmn8KHQ77WqBLVUfazdiPnwFYWqUrfGOrqOXk8=
 github.com/heroiclabs/nakama/v3 v3.34.0 h1:hDZtriinf2OvFlmgbwuVMw0TN8FdXqLfWNi+FsEwyXY=
 github.com/heroiclabs/nakama/v3 v3.34.0/go.mod h1:KG5ZbekrxWwPCIR5vQVABjGxutqoSp3xi6a9glLcZg0=
+github.com/heroiclabs/sql-migrate v0.0.0-20241125131053-95a7949783b0 h1:hHJcYOP6L2/wZIEnYjjkJM+rOk/bK0uaYkDAejYpLhI=
+github.com/heroiclabs/sql-migrate v0.0.0-20241125131053-95a7949783b0/go.mod h1:uwcmopkVQIfb/JQqul5zmGI9ounclRC08j9S9lLcpRQ=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/influxdata/influxdb v1.7.6/go.mod h1:qZna6X/4elxqT3yI9iZYdZrWWdeFOOprn86kgg4+IzY=
 github.com/jackc/pgerrcode v0.0.0-20240316143900-6e2875d9b438 h1:Dj0L5fhJ9F82ZJyVOmBx6msDp/kfd1t9GRfny/mfJA0=

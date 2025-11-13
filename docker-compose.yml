@@ -1,0 +1,57 @@
+name: custom-nakama
+
+services:
+  postgres:
+    container_name: custom-nakama-postgres
+    image: postgres:16.8-alpine
+    command: postgres -c password_encryption=md5
+    environment:
+      - POSTGRES_DB=custom-nakama
+      - POSTGRES_PASSWORD=localdb
+      - POSTGRES_HOST_AUTH_METHOD=md5
+      - POSTGRES_INITDB_ARGS=--auth-host=md5
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "custom-nakama"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  pgbouncer:
+    container_name: custom-nakama-pgbouncer
+    image: edoburu/pgbouncer:latest
+    environment:
+      # Required base config
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=localdb
+      # Wildcard config allows any database name to be created dynamically
+      - DB_NAME=*
+      - POOL_MODE=transaction
+      - MAX_CLIENT_CONN=1000
+      - DEFAULT_POOL_SIZE=25
+      - MIN_POOL_SIZE=5
+      - RESERVE_POOL_SIZE=5
+      - SERVER_IDLE_TIMEOUT=600
+      - MAX_DB_CONNECTIONS=100
+      - AUTH_TYPE=trust
+    ports:
+      - "6432:5432"
+    expose:
+      - "5432"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "localhost", "-p", "5432", "-U", "postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+volumes:
+  data:
